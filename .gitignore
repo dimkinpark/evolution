@@ -72,4 +72,44 @@ Desktop.ini
 .rocketeer
 
 # except do not ignore .gitignore
-!.gitignore
+!.gitignore# ============================================================================
+# ZM-specific .gitignore additions
+# ============================================================================
+# Append the contents of this file to the existing .gitignore in the
+# repository root. Do NOT replace the existing .gitignore — Evolution CMS
+# has its own ignore rules that must be preserved.
+#
+# Note: Evolution's own .gitignore already covers /vendor/, /composer.phar,
+# /assets/cache/*, and /manager/includes/config.inc.php — those are not
+# repeated here.
+# ============================================================================
+
+# --- ZM development tools ---
+.phpunit.result.cache
+.php-cs-fixer.cache
+.phpstan/
+phpstan.neon.dist.local
+
+# --- ZM runtime files (in addition to Evo's /assets/cache/* rule, these
+#     paths sit outside cache and need their own rules) ---
+/assets/zm-originals/
+/assets/zm-tmp/
+
+# --- ZM local configuration overrides ---
+/core/zm/config.local.php
+/manager/zm/config.local.php
+
+# --- ZetMedia studio internal docs (not committed to public repo) ---
+/IDEAS_ZM.md
+/_zm-internal/
+/STUDIO_NOTES.md
+/ROADMAP_INTERNAL.md
+
+# --- IDE / editor (Evo's .gitignore covers .idea, but not .vscode) ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+.fleet/
+*.swp
+*.swo
+*~

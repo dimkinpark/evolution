@@ -1,0 +1,16 @@
+parameters:
+    level: 6
+    paths:
+        - core/zm/src
+    excludePaths:
+        - core/zm/tests/*
+    bootstrapFiles:
+        - core/zm/phpstan-bootstrap.php
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        # Allow access to Evolution CMS globals through the Bootstrap bridge.
+        # Direct $modx access in core/zm/src/Bootstrap.php is intentional.
+        -
+            message: '#Variable \$modx might not be defined#'
+            path: core/zm/src/Bootstrap.php

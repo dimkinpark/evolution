@@ -1,6 +1,6 @@
 {
     "name": "evolutioncms/evolution",
-    "description": "Evolution CMS is a Content Management System, ex MODX Evolution",
+    "description": "Evolution CMS is a Content Management System, ex MODX Evolution. ZetMedia fork (ZM) adds optional admin tooling on top.",
     "type": "project",
     "keywords": [
         "content",
@@ -16,11 +16,46 @@
         "source": "https://github.com/evocms-community/evolution/"
     },
     "config": {
-        "vendor-dir": "vendor"
+        "vendor-dir": "vendor",
+        "sort-packages": true,
+        "optimize-autoloader": true
     },
     "require": {
         "php": ">=7.4",
         "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6",
+        "phpstan/phpstan": "^1.10",
+        "friendsofphp/php-cs-fixer": "^3.40"
+    },
+    "autoload": {
+        "psr-4": {
+            "ZM\\": "core/zm/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ZM\\Tests\\": "core/zm/tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --colors=always",
+        "lint": "php-cs-fixer fix --dry-run --diff",
+        "lint:fix": "php-cs-fixer fix",
+        "analyse": "phpstan analyse --memory-limit=512M",
+        "check": [
+            "@lint",
+            "@analyse",
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run the PHPUnit test suite",
+        "lint": "Check code style without modifying files",
+        "lint:fix": "Fix code style violations automatically",
+        "analyse": "Run PHPStan static analysis",
+        "check": "Run lint, analysis and tests in sequence"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
