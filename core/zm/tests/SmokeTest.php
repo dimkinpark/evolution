@@ -24,7 +24,7 @@ final class SmokeTest extends TestCase
     {
         self::assertTrue(
             version_compare(PHP_VERSION, '7.4.0', '>='),
-            'ZM Evolution requires PHP 7.4 or newer.'
+            'ZM Evolution requires PHP 7.4 or newer.',
         );
     }
 }
